@@ -1,0 +1,418 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* BLACK & WHITE THEME */
+body {
+  background: linear-gradient(135deg, #000, #1a1a1a, #2c2c2c);
+  background-size: 300% 300%;
+  animation: bgmove 12s infinite alternate ease-in-out;
+  color: white;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+@keyframes bgmove {
+  0% { background-position: 0% 30%; }
+  100% { background-position: 100% 70%; }
+}
+
+/* ❄ SNOW SYSTEM */
+.Snows {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.flake {
+  position: absolute;
+  top: -10vh;
+  width: 18px;
+  height: 18px;
+  background-image: url("img/Snow.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  animation: fall linear infinite;
+}
+
+.flake:nth-child(1) { left: 5%;  animation-duration: 6s; }
+.flake:nth-child(2) { left: 12%; animation-duration: 8s; }
+.flake:nth-child(3) { left: 22%; animation-duration: 7s; }
+.flake:nth-child(4) { left: 35%; animation-duration: 9s; }
+.flake:nth-child(5) { left: 48%; animation-duration: 6.5s; }
+.flake:nth-child(6) { left: 60%; animation-duration: 11s; }
+.flake:nth-child(7) { left: 74%; animation-duration: 7.5s; }
+.flake:nth-child(8) { left: 88%; animation-duration: 10.5s; }
+
+@keyframes fall {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0.2; }
+}
+
+/* WRAPPER */
+.wrapper {
+  max-width: 1400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* TITLES */
+.tile h1 {
+  font-size: 3.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #fff, #bfbfbf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255,255,255,0.35);
+}
+
+.tile h2 {
+  font-size: 1.35rem;
+  color: #e0e0e0;
+  margin-top: 12px;
+  max-width: 850px;
+  margin-inline: auto;
+  line-height: 1.6;
+}
+
+/* NAV BUTTONS */
+.nav {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 15px 34px;
+  background: linear-gradient(135deg, #444, #888);
+  border-radius: 14px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.15);
+  transition: 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(255,255,255,0.3);
+}
+
+/* DOWNLOAD BOXES */
+.download  {
+  max-width: 950px;
+  margin: 65px auto;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border-radius: 26px;
+  box-shadow: 0 8px 35px rgba(0,0,0,0.4);
+}
+
+.download h1  {
+  font-size: 2.4rem;
+  margin-bottom: 22px;
+  background: linear-gradient(90deg, #fff, #ccc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #6f6f6f, #bfbfbf);
+  padding: 16px 34px;
+  font-size: 1.25rem;
+  color: white;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(255,255,255,0.3);
+  display: inline-block;
+  transition: 0.25s ease;
+}
+
+.download-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(255,255,255,0.35);
+}
+
+/* APPS BOXES */
+.apps  {
+  max-width: 950px;
+  margin: 65px auto;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border-radius: 26px;
+  box-shadow: 0 8px 35px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.apps h1  {
+  font-size: 2.4rem;
+  margin-bottom: 22px;
+  background: linear-gradient(90deg, #fff, #ccc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.apps a {
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+  max-width: 220px;
+  text-align: center;
+}
+
+.download-app-btn {
+  background: linear-gradient(135deg, #6f6f6f, #bfbfbf);
+  padding: 16px 34px;
+  font-size: 1.25rem;
+  color: white;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(255,255,255,0.3);
+  display: inline-block;
+  transition: 0.25s ease;
+  text-decoration: none;
+}
+
+.download-app-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(255,255,255,0.35);
+}
+
+/* COPY SECTION */
+.copy-section {
+  max-width: 1400px;
+  margin: 70px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  padding: 0 20px;
+}
+
+.copy-card {
+  position: relative;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: 0.25s ease;
+}
+
+.copy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(255,255,255,0.28);
+}
+
+.copy-title {
+  font-size: 1.45rem;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.copy-btn {
+  padding: 12px 28px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #333, #666);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 16px rgba(255,255,255,0.25);
+  transition: 0.25s ease;
+}
+
+.copy-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255,255,255,0.35);
+}
+
+.tooltip {
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 10;
+}
+
+.tooltip.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* TUTORIAL SECTION */
+.tuts {
+  max-width: 1400px;
+  margin: 70px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 35px;
+  padding: 0 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  border-radius: 26px;
+  padding: 35px 32px;
+  border: 1px solid rgba(255,255,255,0.14);
+  transition: 0.3s ease;
+  position: relative;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(255,255,255,0.18);
+}
+
+.icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+  opacity: 0.95;
+}
+
+.icon.win { color: #77c7ff; }
+.icon.android { color: #8aff74; }
+.icon.ios { color: #ff8b8b; }
+
+.platform {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.steps {
+  font-size: 17px;
+  color: #e3e3e3;
+  line-height: 1.6;
+}
+
+.card.android {
+  grid-column: span 2;
+  max-width: 1000px;
+  justify-self: center;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.overlay-text {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 25px 50px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  animation: popUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+@keyframes popUp {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ----------------- IMPROVED RESPONSIVE FIXES ----------------- */
+
+/* Large Tablets */
+@media (max-width: 1100px) {
+  .download, .apps {
+    max-width: 90%;
+  }
+
+  .card.android {
+    grid-column: span 1 !important;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .tuts {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .card.android,
+  .tuts .card:nth-child(3) {
+    grid-column: span 1 !important;
+    max-width: 100%;
+  }
+
+  .download-btn,
+  .download-app-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  body { padding: 30px 12px; }
+  .tile h1 { font-size: 2rem; }
+  .tile h2 { font-size: 0.95rem; line-height: 1.45; }
+
+  .nav-buttons { flex-direction: column; gap: 10px; }
+  .btn { width: 100%; font-size: 1rem; padding: 12px 20px; }
+
+  .download, .apps { padding: 28px 18px; max-width: 100%; }
+  .download-btn, .download-app-btn { width: 100%; font-size: 1rem; padding: 12px 20px; }
+
+  .copy-section { grid-template-columns: 1fr; gap: 18px; padding: 0 8px; }
+  .copy-card { padding: 22px; }
+  .copy-title { font-size: 1.2rem; }
+
+  .tuts { grid-template-columns: 1fr; gap: 18px; padding: 0 8px; }
+  .card { padding: 22px 18px; min-height: auto; }
+  .platform { font-size: 20px; }
+  .steps { font-size: 15px; line-height: 1.45; }
+  .icon { font-size: 34px; }
+
+  .overlay-text { font-size: 1.75rem; padding: 18px 28px; }
+}

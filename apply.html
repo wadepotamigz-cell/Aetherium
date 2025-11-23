@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aetherium Application</title>
+
+<style>
+/*==========================================================
+  GLOBAL THEME — Black & White Premium Glass UI
+==========================================================*/
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #000000, #1a1a1a, #0d0d0d);
+    background-size: 400% 400%;
+    animation: bgflow 12s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: white;
+}
+
+@keyframes bgflow {
+    0% { background-position: 0% 20%; }
+    100% { background-position: 100% 80%; }
+}
+
+/*==========================================================
+  CONTAINER — Pure White Frosted Glass
+==========================================================*/
+.container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    padding: 40px 35px;
+    margin: 60px 20px;
+    border-radius: 28px;
+    width: 100%;
+    max-width: 520px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 40px rgba(255,255,255,0.08);
+    position: relative;
+}
+
+/* Glow Aura */
+.container::before {
+    content: "";
+    position: absolute;
+    inset: -100px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
+    filter: blur(60px);
+    z-index: -1;
+}
+
+/* Title */
+.container h2 {
+    margin-top: 0;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/*==========================================================
+  FORM LABELS
+==========================================================*/
+form label {
+    font-weight: 600;
+    font-size: 15px;
+    color: #e6e6e6;
+    margin-top: 18px;
+    display: block;
+}
+
+/*==========================================================
+  INPUTS / SELECTS / TEXTAREA
+==========================================================*/
+input, select, textarea {
+    width: 100%;
+    padding: 14px;
+    margin-top: 6px;
+    border-radius: 14px;
+    font-size: 15px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: rgb(0, 248, 236);
+    transition: 0.25s;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: white;
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+    outline: none;
+}
+
+/*==========================================================
+  SUBMIT BUTTON
+==========================================================*/
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffffff33, #ffffff55);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, #ffffff55, #ffffff77);
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+}
+
+/*==========================================================
+  SUBMITTED RESULTS
+==========================================================*/
+.submitted-data {
+    margin-top: 25px;
+    padding: 22px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 20px rgba(255,255,255,0.10);
+}
+
+/*==========================================================
+  RESPONSIVE DESIGN — MOBILE FRIENDLY
+==========================================================*/
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        margin: 20px 10px;
+        padding: 30px 25px;
+    }
+
+    .container h2 {
+        font-size: 24px;
+    }
+
+    input, select, textarea {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Aetherium Staff Application</h2>
+
+    <form id="applicationForm">
+
+        <label>Discord Name:</label>
+        <input type="text" id="discord" required>
+
+        <label>In-Game Name:</label>
+        <input type="text" id="ign" required>
+
+        <label>Role you want to apply for:</label>
+        <select id="role" required>
+            <option value="">-- Select Role --</option>
+            <option value="Promoter">Promoter</option>
+            <option value="Manager">Manager</option>
+            <option value="Event Manager">Event Manager</option>
+            <option value="Discord Manager">Discord Manager</option>
+        </select>
+
+        <label>Age:</label>
+        <input type="number" id="age" min="10" required>
+
+        <label>Experience:</label>
+        <textarea id="experience" rows="3" placeholder="Describe your experience…" required></textarea>
+
+        <label>Availability (hours per week):</label>
+        <input type="number" id="availability" min="1" required>
+
+        <label>Why should we choose you?</label>
+        <textarea id="message" rows="4" required></textarea>
+
+        <button type="submit">Submit Application</button>
+    </form>
+
+    <h3>Submitted Data:</h3>
+    <div id="result" class="submitted-data"></div>
+</div>
+
+<script>
+const form = document.getElementById("applicationForm");
+const resultDiv = document.getElementById("result");
+
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1440664008305803274/sxYK989g-ZaXisJMegkdJTTOXVw-EvVutWaxastoRSOXwCY96FuvXNOWwBL-zYlyKMqu";
+
+// Cooldown time: 5 hours (in ms)
+const COOLDOWN = 5 * 60 * 60 * 1000;
+
+// Check cooldown on page load
+const lastSubmit = localStorage.getItem("last_application_time");
+if (lastSubmit) {
+    const timePassed = Date.now() - parseInt(lastSubmit);
+
+    if (timePassed < COOLDOWN) {
+        const remaining = COOLDOWN - timePassed;
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+
+        form.innerHTML = `<h3>You can submit again in ${hours}h ${minutes}m.</h3>`;
+    }
+}
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const lastSubmit = localStorage.getItem("last_application_time");
+
+    if (lastSubmit) {
+        const timePassed = Date.now() - parseInt(lastSubmit);
+        if (timePassed < COOLDOWN) {
+            const remaining = COOLDOWN - timePassed;
+            const hours = Math.floor(remaining / (1000 * 60 * 60));
+            const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+
+            alert(`Cooldown active: You can submit again in ${hours}h ${minutes}m.`);
+            return;
+        }
+    }
+
+    const discord = document.getElementById("discord").value;
+    const ign = document.getElementById("ign").value;
+    const role = document.getElementById("role").value;
+    const age = document.getElementById("age").value;
+    const experience = document.getElementById("experience").value;
+    const availability = document.getElementById("availability").value;
+    const message = document.getElementById("message").value;
+
+    resultDiv.innerHTML = `
+        <p><strong>Discord Name:</strong> ${discord}</p>
+        <p><strong>In-Game Name:</strong> ${ign}</p>
+        <p><strong>Role:</strong> ${role}</p>
+        <p><strong>Age:</strong> ${age}</p>
+        <p><strong>Experience:</strong> ${experience}</p>
+        <p><strong>Availability:</strong> ${availability} hours/week</p>
+        <p><strong>Reason:</strong> ${message}</p>
+    `;
+
+    await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: "Application Bot",
+            embeds: [
+                {
+                    title: "📨 New Staff Application",
+                    color: 16777215,
+                    fields: [
+                        { name: "Discord Name", value: discord },
+                        { name: "In-Game Name", value: ign },
+                        { name: "Role", value: role },
+                        { name: "Age", value: age },
+                        { name: "Experience", value: experience },
+                        { name: "Availability", value: availability + " hours/week" },
+                        { name: "Why choose you?", value: message }
+                    ],
+                    footer: { text: "Aetherium Application System" }
+                }
+            ]
+        })
+    });
+
+    alert("Application sent!");
+
+    // Start cooldown timer
+    localStorage.setItem("last_application_time", Date.now().toString());
+
+    form.innerHTML = "<h3>Thank you! Your application has been submitted. You can submit again in 5 hours.</h3>";
+});
+</script>
+
+</body>
+</html>

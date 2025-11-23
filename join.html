@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetherium Discord Server</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0e0f25, #676acf);
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            color: #000000;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0,0,0,0.25);
+            padding: 40px 60px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            backdrop-filter: blur(8px);
+            max-width: 400px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .discord-logo {
+            width: 90px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 3px 4px rgba(0,0,0,0.25));
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #23272A;
+            padding: 14px 22px;
+            font-size: 18px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: #111416;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Discord Logo (SVG) -->
+        <img class="discord-logo" src="img/discord.jpg" alt="Discord Logo">
+
+        <h1>Join Our Discord</h1>
+        <p>Become part of our amazing community! Click the button below to join the server.</p>
+
+        <!-- PUT YOUR DISCORD LINK HERE -->
+        <a href="https://discord.gg/fsjBdFn83m" class="btn" target="_blank">
+            Join Discord
+        </a>
+    </div>
+
+</body>
+</html>
