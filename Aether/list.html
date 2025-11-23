@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aetherium Staff List</title>
+
+<style>
+/* ========== GLOBAL THEME ========== */
+body {
+    margin: 0;
+    padding: 60px 20px;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, #000, #181818, #2a2a2a);
+    background-size: 300% 300%;
+    animation: bgmove 12s infinite alternate ease-in-out;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: white;
+    overflow-x: hidden;
+}
+
+@keyframes bgmove {
+    0% { background-position: 0% 30%; }
+    100% { background-position: 100% 70%; }
+}
+
+/* ========== BUTTONS ========== */
+.tab-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.tab-buttons button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #444, #888);
+    color: white;
+    transition: 0.25s ease;
+}
+
+.tab-buttons button.active,
+.tab-buttons button:hover {
+    background: linear-gradient(135deg, #6bb5ff, #3a8edb);
+}
+
+/* ========== STAFF SECTION WRAPPER ========== */
+.staff-section {
+    width: 90%;
+    max-width: 600px;
+}
+
+/* ========== MEMBER LIST WRAPPER ========== */
+.member-list {
+    width: 100%;
+    padding: 30px 25px;
+    border-radius: 28px;
+    background: rgba(30, 30, 30, 0.55); /* safer for mobile */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    position: relative;
+}
+
+/* Soft glow behind container */
+.member-list::before {
+    content: "";
+    position: absolute;
+    inset: -70px;
+    background: radial-gradient(circle, rgba(255,255,255,0.09), transparent 70%);
+    filter: blur(50px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ========== EACH MEMBER CARD ========== */
+.member {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 20px;
+    margin-bottom: 22px;
+    border-radius: 22px;
+
+    /* FIX: safer background for iOS */
+    background: rgba(40, 40, 40, 0.55);
+    border: 1px solid rgba(255,255,255,0.12);
+
+    box-shadow: 0 3px 18px rgba(0,0,0,0.35);
+    transition: 0.25s ease;
+}
+
+/* Hover glow */
+.member:hover {
+    transform: translateY(-6px);
+    background: rgba(70, 70, 70, 0.55);
+    border-color: rgba(255,255,255,0.35);
+    box-shadow: 0 0 40px rgba(255,255,255,0.28);
+}
+
+/* Member icon */
+.logo {
+    height: 64px;
+    width: 64px;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 18px rgba(255,255,255,0.22);
+}
+
+/* ========== TEXT ========== */
+.member-name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.member-role {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Role colors */
+.role-owner { color: #ff6b6b; }
+.role-coowner { color: #6bb5ff; }
+.role-manager { color: #a0ff6b; }
+
+/* ========== RESPONSIVE FIXES ========== */
+@media (max-width: 900px) {
+    .member-list { padding: 25px 20px; }
+    .member { gap: 16px; padding: 16px 18px; }
+    .logo { height: 55px; width: 55px; }
+    .member-name { font-size: 18px; }
+}
+
+@media (max-width: 600px) {
+
+    /* FIX: iOS Safari transparency crash */
+    .member {
+        background: rgba(20, 20, 20, 0.75);
+        backdrop-filter: none !important;
+    }
+
+    .member-list {
+        background: rgba(20, 20, 20, 0.75);
+        backdrop-filter: none !important;
+    }
+
+    /* remove glow to prevent white box bug */
+    .member-list::before {
+        display: none;
+    }
+
+    .member { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .logo { height: 50px; width: 50px; }
+    .member-name { font-size: 16px; }
+    .member-role { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="staff-section">
+    <div class="tab-buttons">
+        <button class="active" onclick="showMembers(1)">1</button>
+        <button onclick="showMembers(2)">2</button>
+    </div>
+
+    <div class="member-list" id="members-1">
+        <div class="member">
+            <img class="logo" src="img/staff.png">
+            <div>
+                <div class="member-name">@Name</div>
+                <div class="member-role role-owner">Owner</div>
+            </div>
+        </div>
+
+        <div class="member">
+            <img class="logo" src="img/staff.png">
+            <div>
+                <div class="member-name">@Malware</div>
+                <div class="member-role role-owner">Owner</div>
+            </div>
+        </div>
+
+        <div class="member">
+            <img class="logo" src="img/staff.png">
+            <div>
+                <div class="member-name">@Atasha</div>
+                <div class="member-role role-coowner">Co-Owner</div>
+            </div>
+        </div>
+
+        <div class="member">
+            <img class="logo" src="img/staff.png">
+            <div>
+                <div class="member-name">@WWW</div>
+                <div class="member-role role-coowner">Co-Owner</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="member-list" id="members-2" style="display:none;">
+        <div class="member">
+            <img class="logo" src="img/staff.png">
+            <div>
+                <div class="member-name">@SALEENA</div>
+                <div class="member-role role-manager">Community Manager</div>
+            </div>
+        </div>
+
+        <div class="member">
+            <img class="logo" src="img/staff.png">
+            <div>
+                <div class="member-name">@AOE</div>
+                <div class="member-role role-manager">Community Manager</div>
+            </div>
+        </div>
+
+        <div class="member">
+            <img class="logo" src="img/staff.png">
+            <div>
+                <div class="member-name">@MIZ</div>
+                <div class="member-role role-manager">Community Manager</div>
+            </div>
+        </div>
+
+        <div class="member">
+            <img class="logo" src="img/staff.png">
+            <div>
+                <div class="member-name">@MAC</div>
+                <div class="member-role role-manager">Community Manager</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showMembers(tab) {
+    const list1 = document.getElementById('members-1');
+    const list2 = document.getElementById('members-2');
+    const buttons = document.querySelectorAll('.tab-buttons button');
+
+    if(tab === 1) {
+        list1.style.display = 'block';
+        list2.style.display = 'none';
+    } else {
+        list1.style.display = 'none';
+        list2.style.display = 'block';
+    }
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+    buttons[tab - 1].classList.add('active');
+}
+</script>
+
+</body>
+</html>
